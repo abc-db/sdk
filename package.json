@@ -1,0 +1,13 @@
+{
+  "name": "abc-db-sdk",
+  "version": "1.0.0",
+  "description": "ABC-DB Public SDK",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:abc-db/sdk.git"
+  },
+  "author": "Obed Tandadjaja and Marcel Christianis",
+  "license": "MIT",
+  "private": true
+}
