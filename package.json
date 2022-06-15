@@ -10,7 +10,7 @@
   "files": ["/lib"],
   "author": "Obed Tandadjaja and Marcel Christianis",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "rm -rf lib && tsc --project tsconfig.json"
   }
