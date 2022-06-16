@@ -1,3 +1,4 @@
+import uniqid from "../utils/uniqid";
 export interface PutParams {
   key: string;
   data: object;
@@ -9,14 +10,14 @@ export interface PutResponse {
 
 export const Put = async (
   apiKey: string,
-  params: PutParams,
+  params: PutParams
 ): Promise<PutResponse> => {
-  const response = await fetch('https://api.abcdb.dev/api/put', {
-    method: 'PUT',
+  const response = await fetch("https://api.abcdb.dev/api/put", {
+    method: "PUT",
     headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      'X-ABCDB-TOKEN': apiKey,
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "X-ABCDB-TOKEN": apiKey,
     },
     body: JSON.stringify(params),
   });
@@ -24,12 +25,43 @@ export const Put = async (
   if (!response.ok) {
     if (response.status === 401) {
       throw new Error(
-        'Failed to perform Put operation due to authentication please check your API key',
+        "Failed to perform Put operation due to authentication please check your API key"
       );
     }
 
     throw new Error(
-      `Failed to perform Put operation with code: ${response.status}`,
+      `Failed to perform Put operation with code: ${response.status}`
+    );
+  }
+
+  const data = await response.json();
+  return data;
+};
+
+export const PutRecord = async (
+  apiKey: string,
+  params: PutParams
+): Promise<PutResponse> => {
+  params.key = `${params.key}-${uniqid()}`;
+  const response = await fetch("https://api.abcdb.dev/api/put", {
+    method: "PUT",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "X-ABCDB-TOKEN": apiKey,
+    },
+    body: JSON.stringify(params),
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error(
+        "Failed to perform Put operation due to authentication please check your API key"
+      );
+    }
+
+    throw new Error(
+      `Failed to perform Put operation with code: ${response.status}`
     );
   }
 
