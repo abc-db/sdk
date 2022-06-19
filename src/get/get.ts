@@ -8,11 +8,9 @@ export const Get = async (
   key: string,
 ): Promise<GetResponse> => {
   const response = await fetch(`https://api.abcdb.dev/api/get?key=${key}`, {
-    method: 'GET',
     headers: {
       'X-ABCDB-TOKEN': apiKey,
     },
-    body: null,
   });
 
   if (!response.ok) {

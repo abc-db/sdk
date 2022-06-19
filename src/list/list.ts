@@ -18,11 +18,9 @@ export const List = async (
   const response = await fetch(
     `https://api.abcdb.dev/api/list?prefix=${prefix}`,
     {
-      method: 'GET',
       headers: {
         'X-ABCDB-TOKEN': apiKey,
       },
-      body: null,
     },
   );
 
