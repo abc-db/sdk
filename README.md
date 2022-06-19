@@ -5,7 +5,7 @@ Public SDK for AbcDB. Setting up cloud databases is as easy as "ABC"!
 Example usage:
 
 ```javascript
-import AbcDB from 'abc-db'
+import AbcDB from 'abc-db-sdk'
 
 const db = new AbcDB({ apiKey: '{your_database_api_key}' })
 
