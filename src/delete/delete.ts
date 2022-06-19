@@ -1,14 +1,10 @@
-export interface DeleteParams {
-  key: string;
-}
-
 export interface DeleteResponse {
   deleted_key: string;
 }
 
 export const Delete = async (
   apiKey: string,
-  params: DeleteParams,
+  key: string,
 ): Promise<DeleteResponse> => {
   const response = await fetch('https://api.abcdb.dev/api/delete', {
     method: 'DELETE',
@@ -17,7 +13,7 @@ export const Delete = async (
       'Content-Type': 'application/json',
       'X-ABCDB-TOKEN': apiKey,
     },
-    body: JSON.stringify(params),
+    body: JSON.stringify({key}),
   });
 
   if (!response.ok) {

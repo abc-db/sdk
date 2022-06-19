@@ -1,12 +1,8 @@
-import {Get, GetParams, GetResponse} from './get/get';
+import {Get, GetResponse} from './get/get';
 import {List, ListParams, ListResponse} from './list/list';
-import {Put, PutRecord, PutParams, PutResponse} from './put/put';
-import {Delete, DeleteParams, DeleteResponse} from './delete/delete';
-import {
-  BatchDelete,
-  BatchDeleteParams,
-  BatchDeleteResponse,
-} from './delete/batchdelete';
+import {Put, PutParams, PutResponse} from './put/put';
+import {Delete, DeleteResponse} from './delete/delete';
+import {BatchDelete, BatchDeleteResponse} from './delete/batchdelete';
 
 interface Options {
   apiKey: string;

@@ -8,4 +8,4 @@ export interface DataRecord {
     key: string;
     data: object;
 }
-export declare const List: (apiKey: string, params: ListParams) => Promise<ListResponse>;
+export declare const List: (apiKey: string, prefix?: string) => Promise<ListResponse>;

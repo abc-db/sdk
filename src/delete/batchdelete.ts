@@ -1,14 +1,10 @@
-export interface BatchDeleteParams {
-  prefix: string;
-}
-
 export interface BatchDeleteResponse {
   deleted_keys: string[];
 }
 
 export const BatchDelete = async (
   apiKey: string,
-  params: BatchDeleteParams,
+  prefix: string,
 ): Promise<BatchDeleteResponse> => {
   const response = await fetch('https://api.abcdb.dev/api/batchdelete', {
     method: 'DELETE',
@@ -17,7 +13,7 @@ export const BatchDelete = async (
       'Content-Type': 'application/json',
       'X-ABCDB-TOKEN': apiKey,
     },
-    body: JSON.stringify(params),
+    body: JSON.stringify({prefix}),
   });
 
   if (!response.ok) {
