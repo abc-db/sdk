@@ -1,7 +1,3 @@
-export interface GetParams {
-  key: string;
-}
-
 export interface GetResponse {
   key: string;
   data: object;
@@ -9,16 +5,15 @@ export interface GetResponse {
 
 export const Get = async (
   apiKey: string,
-  params: GetParams,
+  key: string,
 ): Promise<GetResponse> => {
-  const response = await fetch('https://api.abcdb.dev/api/get', {
+  const response = await fetch(`https://api.abcdb.dev/api/get?key=${key}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
       'Content-Type': 'application/json',
       'X-ABCDB-TOKEN': apiKey,
     },
-    body: JSON.stringify(params),
   });
 
   if (!response.ok) {

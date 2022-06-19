@@ -19,28 +19,24 @@ export class AbcDB {
     this.apiKey = opts.apiKey;
   }
 
-  async get(params: GetParams): Promise<GetResponse> {
-    return await Get(this.apiKey, params);
+  async get(key: string): Promise<GetResponse> {
+    return await Get(this.apiKey, key);
   }
 
-  async list(params: ListParams): Promise<ListResponse> {
-    return await List(this.apiKey, params);
+  async list(prefix?: string): Promise<ListResponse> {
+    return await List(this.apiKey, prefix);
   }
 
   async put(params: PutParams): Promise<PutResponse> {
     return await Put(this.apiKey, params);
   }
 
-  async putRecord(params: PutParams): Promise<PutResponse> {
-    return await PutRecord(this.apiKey, params);
+  async delete(key: string): Promise<DeleteResponse> {
+    return await Delete(this.apiKey, key);
   }
 
-  async delete(params: DeleteParams): Promise<DeleteResponse> {
-    return await Delete(this.apiKey, params);
-  }
-
-  async batchDelete(params: BatchDeleteParams): Promise<BatchDeleteResponse> {
-    return await BatchDelete(this.apiKey, params);
+  async batchDelete(prefix: string): Promise<BatchDeleteResponse> {
+    return await BatchDelete(this.apiKey, prefix);
   }
 }
 export default AbcDB;

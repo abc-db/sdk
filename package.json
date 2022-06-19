@@ -7,11 +7,14 @@
     "type": "git",
     "url": "git@github.com:abc-db/sdk.git"
   },
-  "files": ["/lib"],
+  "files": [
+    "/lib"
+  ],
   "author": "Obed Tandadjaja and Marcel Christianis",
   "license": "MIT",
   "private": false,
   "scripts": {
     "build": "rm -rf lib && tsc --project tsconfig.json"
-  }
+  },
+  "dependencies": {}
 }
