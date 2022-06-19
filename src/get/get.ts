@@ -11,7 +11,6 @@ export const Get = async (
     method: 'GET',
     headers: {
       Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
       'X-ABCDB-TOKEN': apiKey,
     },
   });
