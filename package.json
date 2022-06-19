@@ -1,6 +1,6 @@
 {
   "name": "abc-db-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ABC-DB Public SDK",
   "main": "lib/abcdb.js",
   "types": "lib/abcdb.d.ts",
@@ -8,13 +8,12 @@
     "type": "git",
     "url": "git@github.com:abc-db/sdk.git"
   },
-  "files": ["/lib"],
   "author": "Obed Tandadjaja and Marcel Christianis",
   "license": "MIT",
   "private": false,
   "scripts": {
     "build": "rm -rf lib && tsc --project tsconfig.json",
-    "prepublish": "rm -rf lib && tsc --project tsconfig.json"
+    "prepublish": "tsc"
   },
   "dependencies": {},
   "devDependencies": {
