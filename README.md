@@ -35,7 +35,7 @@ await db.delete('dummy-key')
 
 Writing record with random key.
 
-```
+```javascript
 const record = await db.put({
   data: {
     name: 'John Doe',
@@ -53,6 +53,6 @@ console.log(record) // Result: { key: '{random-key}' }
 
 Batch deletes based on a prefix.
 
-```
+```javascript
 await db.batchdelete('dummy')
 ```
