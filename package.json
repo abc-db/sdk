@@ -1,6 +1,6 @@
 {
   "name": "abc-db-sdk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ABC-DB Public SDK",
   "main": "lib/abcdb.js",
   "types": "lib/abcdb.d.ts",
