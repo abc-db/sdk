@@ -2,6 +2,18 @@
 
 Public SDK for AbcDB. Setting up cloud databases is as easy as "ABC"!
 
+## Installation
+
+```bash
+# NPM
+npm install abc-db-sdk
+
+# Yarn
+yarn add abc-db-sdk
+```
+
+## Usage
+
 Example usage:
 
 ```javascript
@@ -56,3 +68,13 @@ Batch deletes based on a prefix.
 ```javascript
 await db.batchdelete('dummy')
 ```
+
+## Roadmap
+
+- Transaction support by end of July 2022
+- Origin-based authorization by end of July 2022
+- Go SDK by end of July 2022
+
+## Looking for more features?
+
+Submit an issue! We will address them as soon as possible.
