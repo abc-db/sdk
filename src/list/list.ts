@@ -23,10 +23,12 @@ export const List = async (
   if (err) {
     if (err.status === 401) {
       throw new Error(
-        'Failed to perform Get operation due to authentication please check your API key',
+        'Failed to perform List operation due to authentication please check your API key',
       );
     }
-    throw new Error(`Failed to perform Get operation with code: ${err.status}`);
+    throw new Error(
+      `Failed to perform List operation with code: ${err.status}`,
+    );
   }
 
   return res!.data;

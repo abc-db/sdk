@@ -15,7 +15,7 @@ class APIClient {
     // Auth API client
     this.private = axios.create({
       baseURL: this.baseUrl,
-      withCredentials: true,
+      withCredentials: false,
       headers: {
         'X-ABCDB-TOKEN': this.token,
       },

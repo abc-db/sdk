@@ -20,10 +20,12 @@ export const BatchDelete = async (
   if (err) {
     if (err.status === 401) {
       throw new Error(
-        'Failed to perform Get operation due to authentication please check your API key',
+        'Failed to perform BatchDelete operation due to authentication please check your API key',
       );
     }
-    throw new Error(`Failed to perform Get operation with code: ${err.status}`);
+    throw new Error(
+      `Failed to perform BatchDelete operation with code: ${err.status}`,
+    );
   }
 
   return res!.data;
