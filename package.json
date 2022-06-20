@@ -15,8 +15,10 @@
     "build": "rm -rf lib && tsc --project tsconfig.json",
     "prepublish": "tsc"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
   "devDependencies": {
-    "typescript": "^2.7.2"
+    "@types/axios": "^0.14.0"
   }
 }

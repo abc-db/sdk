@@ -1,33 +1,30 @@
+import APIClient from './../apiclient';
+
 export interface DeleteResponse {
   deleted_key: string;
 }
 
 export const Delete = async (
-  apiKey: string,
+  apiClient: APIClient,
   key: string,
 ): Promise<DeleteResponse> => {
-  const response = await fetch('https://api.abcdb.dev/api/delete', {
-    method: 'DELETE',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      'X-ABCDB-TOKEN': apiKey,
-    },
-    body: JSON.stringify({key}),
-  });
-
-  if (!response.ok) {
-    if (response.status === 401) {
+  const [res, err] = await apiClient.handle(
+    apiClient.private.delete<DeleteResponse>(`/api/delete`, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      params: {key},
+    }),
+  );
+  if (err) {
+    if (err.status === 401) {
       throw new Error(
-        'Failed to perform Delete operation due to authentication please check your API key',
+        'Failed to perform Get operation due to authentication please check your API key',
       );
     }
-
-    throw new Error(
-      `Failed to perform Delete operation with code: ${response.status}`,
-    );
+    throw new Error(`Failed to perform Get operation with code: ${err.status}`);
   }
 
-  const data = await response.json();
-  return data;
+  return res!.data;
 };

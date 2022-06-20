@@ -1,6 +1,4 @@
-export interface ListParams {
-  prefix?: string;
-}
+import APIClient from './../apiclient';
 
 export interface ListResponse {
   records: DataRecord[];
@@ -12,30 +10,24 @@ export interface DataRecord {
 }
 
 export const List = async (
-  apiKey: string,
+  apiClient: APIClient,
   prefix: string = '',
 ): Promise<ListResponse> => {
-  const response = await fetch(
-    `https://api.abcdb.dev/api/list?prefix=${prefix}`,
-    {
-      headers: {
-        'X-ABCDB-TOKEN': apiKey,
+  const [res, err] = await apiClient.handle(
+    apiClient.private.get<ListResponse>(`/api/list`, {
+      params: {
+        prefix,
       },
-    },
+    }),
   );
-
-  if (!response.ok) {
-    if (response.status === 401) {
+  if (err) {
+    if (err.status === 401) {
       throw new Error(
-        'Failed to perform List operation due to authentication please check your API key',
+        'Failed to perform Get operation due to authentication please check your API key',
       );
     }
-
-    throw new Error(
-      `Failed to perform List operation with code: ${response.status}`,
-    );
+    throw new Error(`Failed to perform Get operation with code: ${err.status}`);
   }
 
-  const data = await response.json();
-  return data;
+  return res!.data;
 };

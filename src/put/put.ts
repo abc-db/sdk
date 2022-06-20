@@ -1,3 +1,5 @@
+import APIClient from './../apiclient';
+
 export interface PutParams {
   key?: string;
   data: object;
@@ -8,31 +10,25 @@ export interface PutResponse {
 }
 
 export const Put = async (
-  apiKey: string,
+  apiClient: APIClient,
   params: PutParams,
 ): Promise<PutResponse> => {
-  const response = await fetch('https://api.abcdb.dev/api/put', {
-    method: 'PUT',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      'X-ABCDB-TOKEN': apiKey,
-    },
-    body: JSON.stringify(params),
-  });
-
-  if (!response.ok) {
-    if (response.status === 401) {
+  const [res, err] = await apiClient.handle(
+    apiClient.private.put<PutResponse>(`/api/put`, params, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+    }),
+  );
+  if (err) {
+    if (err.status === 401) {
       throw new Error(
-        'Failed to perform Put operation due to authentication please check your API key',
+        'Failed to perform Get operation due to authentication please check your API key',
       );
     }
-
-    throw new Error(
-      `Failed to perform Put operation with code: ${response.status}`,
-    );
+    throw new Error(`Failed to perform Get operation with code: ${err.status}`);
   }
 
-  const data = await response.json();
-  return data;
+  return res!.data;
 };

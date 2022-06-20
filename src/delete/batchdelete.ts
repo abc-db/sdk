@@ -1,33 +1,30 @@
+import APIClient from './../apiclient';
+
 export interface BatchDeleteResponse {
   deleted_keys: string[];
 }
 
 export const BatchDelete = async (
-  apiKey: string,
+  apiClient: APIClient,
   prefix: string,
 ): Promise<BatchDeleteResponse> => {
-  const response = await fetch('https://api.abcdb.dev/api/batchdelete', {
-    method: 'DELETE',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      'X-ABCDB-TOKEN': apiKey,
-    },
-    body: JSON.stringify({prefix}),
-  });
-
-  if (!response.ok) {
-    if (response.status === 401) {
+  const [res, err] = await apiClient.handle(
+    apiClient.private.delete<BatchDeleteResponse>(`/api/batchdelete`, {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      params: {prefix},
+    }),
+  );
+  if (err) {
+    if (err.status === 401) {
       throw new Error(
-        'Failed to perform BatchDelete operation due to authentication please check your API key',
+        'Failed to perform Get operation due to authentication please check your API key',
       );
     }
-
-    throw new Error(
-      `Failed to perform BatchDelete operation with code: ${response.status}`,
-    );
+    throw new Error(`Failed to perform Get operation with code: ${err.status}`);
   }
 
-  const data = await response.json();
-  return data;
+  return res!.data;
 };
