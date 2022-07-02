@@ -2,7 +2,7 @@ import APIClient from './../apiclient';
 
 export interface PutParams {
   key?: string;
-  data: object;
+  data: string;
 }
 
 export interface PutResponse {

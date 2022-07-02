@@ -2,7 +2,7 @@ import APIClient from './../apiclient';
 
 export interface GetResponse {
   key: string;
-  data: object;
+  data: string;
 }
 
 export const Get = async (
@@ -10,11 +10,7 @@ export const Get = async (
   key: string,
 ): Promise<GetResponse> => {
   const [res, err] = await apiClient.handle(
-    apiClient.private.get<GetResponse>(`/api/get`, {
-      params: {
-        key,
-      },
-    }),
+    apiClient.private.get<GetResponse>(`/api/get`, {params: {key}}),
   );
   if (err) {
     if (err.status === 401) {

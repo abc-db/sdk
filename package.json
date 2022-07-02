@@ -16,9 +16,11 @@
     "prepublish": "tsc"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "crypto": "^1.0.1"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "@types/node": "^18.0.0"
   }
 }

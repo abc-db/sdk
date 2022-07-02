@@ -6,7 +6,7 @@ export interface ListResponse {
 
 export interface DataRecord {
   key: string;
-  data: object;
+  data: string;
 }
 
 export const List = async (
@@ -14,11 +14,7 @@ export const List = async (
   prefix: string = '',
 ): Promise<ListResponse> => {
   const [res, err] = await apiClient.handle(
-    apiClient.private.get<ListResponse>(`/api/list`, {
-      params: {
-        prefix,
-      },
-    }),
+    apiClient.private.get<ListResponse>(`/api/list`, {params: {prefix}}),
   );
   if (err) {
     if (err.status === 401) {
