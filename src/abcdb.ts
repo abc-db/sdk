@@ -64,6 +64,22 @@ export class AbcDB {
   }
 
   /**
+   * Insert or update a record to the database with server-generated random key.
+   *
+   * Since the database only stores encrypted values based on the api key,
+   * all writes will be decrypted first by the SDK.
+   *
+   * @returns {string} the key of the newly updated/inserted record.
+   */
+  async putWithRandomKey(data: object): Promise<string> {
+    return (
+      await Put(this.apiClient, {
+        data: this.#encrypt(data),
+      })
+    ).key;
+  }
+
+  /**
    * Insert or update a record to the database.
    *
    * Since the database only stores encrypted values based on the api key,
